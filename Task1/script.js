@@ -23,4 +23,7 @@ appData = {
 };
 
 console.log(appData);
+
+alert(money/30);
+
 	
