@@ -1,29 +1,78 @@
 'use strict';
 
- 
-let	appData = {},
-	expensesi = {},
-	expenses1,
-	expenses2;
+let money = +prompt("Ваш бюджет на месяц?"),
+	time = prompt("Введите дату в формате YYYY-MM-DD");
 
-let money = prompt("Ваш бюджет на месяц?");
-let time = prompt("Введите дату в формате YYYY-MM-DD");
-
-expenses1 = prompt("Введите обязательную статью расходов в этом месяце");
-expenses2 = prompt("Во сколько обойдется?");
-expensesi[expenses1] = expenses2;
-
-appData = {
-	moneySum: money,
-	timeData: time,
-	expenses: {[expenses1] : expenses2},
-	optionalExpenses: "",
+let appData = {
+	budget: money,
+	expenses: {},
+	optionalExpenses: {},
 	income: [],
+	timeData: time,
 	savings: false
 };
 
+/*for (let i = 0; i < 2; i++){
+	alert(i);
+
+	let	a = prompt("Введите обязательную статью расходов в этом месяце", ""),
+		b = +prompt("Во сколько обойдется?", "");
+
+	if (typeof(a)==="string" && typeof(a) != null && typeof(b) != null &&
+		a != "" && b != "" && !isNaN(b) && a.length <50){
+			console.log("done");
+			appData.expenses[a] = b;
+	} else {
+		alert("Вы ввели не верные данные, повторите еще раз");
+	}	
+}
+*/
+/*
+let i = 0;
+do {
+	let	a = prompt("Введите обязательную статью расходов в этом месяце", ""),
+		b = +prompt("Во сколько обойдется?", "");
+
+	if (typeof(a)==="string" && typeof(a) != null && typeof(b) != null &&
+		a != "" && b != "" && !isNaN(b) && a.length <50){
+			console.log("done");
+			appData.expenses[a] = b;
+			i ++;
+	} else {
+		alert("Вы ввели не верные данные, повторите еще раз");
+	}	
+} while (i < 2)
+*/
+let i = 0;
+while (i < 2)  {
+	let	a = prompt("Введите обязательную статью расходов в этом месяце", ""),
+		b = +prompt("Во сколько обойдется?", "");
+
+	if (typeof(a)==="string" && typeof(a) != null && typeof(b) != null &&
+		a != "" && b != "" && !isNaN(b) && a.length <50){
+			console.log("done");
+			appData.expenses[a] = b;
+			i ++;
+	} else {
+		alert("Вы ввели не верные данные, повторите еще раз");
+	}	
+}
+
+appData.moneyPerDay = appData.budget/30;
+
+
+
+alert("Ежедневный бюджет: " + appData.moneyPerDay);
+
+if (appData.moneyPerDay < 100){
+	console.log("Минимальный уровень достатка");
+} else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000){
+	console.log("Средний уровень достатка");
+} else if (appData.moneyPerDay > 2000){
+	console.log("Высокий уровень достатка");
+} else {
+	console.log("Произошла ошибка");
+}
+
 console.log(appData);
-
-alert(money/30);
-
 	
